@@ -3,21 +3,38 @@ INSERT INTO METAHUMANS( MHID, alias, fName, lName)
 	VALUES	('EL67O1', 'Captain America', 'Steven', 'Rogers'),
 			('RK50N5', 'Iron Man', 'Anthony', 'Stark'),
 			('QB75Q3', 'Hulk, The', 'Bruce', 'Banner'),
-			('HK72U4', 'Thing, The', 'Benjamin', 'Grimm');
-
+			('HK72U4', 'Thing, The', 'Benjamin', 'Grimm'),
+			('YZ94L4','Patriot','Eli','Bradley'),
+			('YW46P5','Sister Grimm','Nico','Minoru'),
+			('IZ27J0','Mister Fantastic','Reed','Richards'),
+			('ZP84Q6','Nova','Richard','Rider'),
+			('UC99L9','Beast','Hank','McCoy'),
+			('UR31O5','Giant Man','Hank','Pym'),
+			('LL12G7','Ant-Man','Scott','Lang'),
+			('OV70X3','Ant-Man','Hank','Pym'),
+			('YC26T9','Yellowjacket','Hank','Pym');
 -- Types --
 INSERT INTO TYPES (TypeID, TypeClass)
 	VALUES 	('AL73X7','Peak Physical Condition'),
 			('ZD72B3','Advance Mechanical Armor'),
 			('BA16S4','Gamma Mutate'),
-			('EC12Z6','Rock-Based Natural Armor');
+			('EC12Z6','Rock-Based Natural Armor'),
+			('AT51N1','Magical Artifact'),
+			('LZ82A5','Animal-like Physiology'),
+			('KZ39E8','Size Manipulation'),
+			('WI20T1','Nova Force'),
+			('OV17Z8','Elasticity');
 
 -- Orgins --
 INSERT INTO ORGINS (OrginID,OrginClass)
 	VALUES 	('MX73W1','Super Soldier Serum'),
 			('RP41W1','Technological Innovation'),
 			('SS67W3','Radiation Accident'),
-			('NS30H6','Cosmic Rays');
+			('NS30H6','Cosmic Rays'),
+			('WP23U0','Legacy'),
+			('YJ49O4','Pym Particles'),
+			('TX25O9','Human Mutate'),
+			('LF44D2','Intergalatic Police Force');
 
 -- Levels --
 INSERT INTO LEVELS (PLID, PowerClass)
@@ -32,7 +49,13 @@ INSERT INTO ABILITIES(AbilityID, MHID, OrginID, TypeID, PLID)
 	VALUES 	('CM77S8','EL67O1','MX73W1','AL73X7','VV51H8'),
 			('HP82T9','RK50N5','RP41W1','ZD72B3','VV51H8'),
 			('EN58A5','QB75Q3','SS67W3','BA16S4','VV51H8'),
-			('ZQ76N8','HK72U4','NS30H6','EC12Z6','BZ54I1');
+			('ZQ76N8','HK72U4','NS30H6','EC12Z6','BZ54I1'),
+			('KM11U7','YZ94L4','WP23U0','AL73X7','AM41K2'),
+			('MV17Y3','YW46P5','WP23U0','AT51N1','BZ54I1'),
+			('ZX48E7','IZ27J0','NS30H6','OV17Z8','VV51H8'),
+			('UI99Y0','ZP84Q6','LF44D2','WI20T1','VV51H8');
+			
+			
 	
 -- States --
 INSERT INTO States(StateID,StateName)
@@ -96,7 +119,9 @@ INSERT INTO Teams(TeamID,TeamName)
 			('OS85X5','Fantastic Four'),
 			('OM65X6','Great Lake Avengers'),
 			('JY58F0','West Coast Avengers'),
-			('YQ89Q0','Young Avengers');
+			('YQ89Q0','Young Avengers'),
+			('FS38V4','Nova Corps'),
+			('ND95E', 'Runaways');
 
 -- Address --
 INSERT INTO Addresses(AddressID, Street, City, Zip)
