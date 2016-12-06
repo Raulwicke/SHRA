@@ -42,7 +42,7 @@ INSERT INTO LEVELS (PLID, PowerClass)
 			('VV51H8','Alpha'),
 			('BZ54I1','Beta'),
 			('AM41K2','Delta'),
-			('FF37F0','Gamme');
+			('FF37F0','Gamma');
 
 -- Abilities --
 INSERT INTO ABILITIES(AbilityID, MHID, OrginID, TypeID, PLID)
@@ -53,7 +53,12 @@ INSERT INTO ABILITIES(AbilityID, MHID, OrginID, TypeID, PLID)
 			('KM11U7','YZ94L4','WP23U0','AL73X7','AM41K2'),
 			('MV17Y3','YW46P5','WP23U0','AT51N1','BZ54I1'),
 			('ZX48E7','IZ27J0','NS30H6','OV17Z8','VV51H8'),
-			('UI99Y0','ZP84Q6','LF44D2','WI20T1','VV51H8');
+			('UI99Y0','ZP84Q6','LF44D2','WI20T1','VV51H8'),
+			('AA27O8','UC99L9','TX25O9','LZ82A5','BZ54I1'),
+			('AC25X3','UR31O5','YJ49O4','KZ39E8','BZ54I1'),
+			('BV49B4','LL12G7','YJ49O4','KZ39E8','BZ54I1'),
+			('QQ61J7','OV70X3','YJ49O4','KZ39E8','BZ54I1'),
+			('KT81P4','YC26T9','YJ49O4','KZ39E8','BZ54I1');
 			
 			
 	
@@ -121,20 +126,28 @@ INSERT INTO Teams(TeamID,TeamName)
 			('JY58F0','West Coast Avengers'),
 			('YQ89Q0','Young Avengers'),
 			('FS38V4','Nova Corps'),
-			('ND95E', 'Runaways');
+			('SM22Z6', 'Runaways'),
+			('SS38K0','S.H.I.E.L.D.');
 
 -- Address --
 INSERT INTO Addresses(AddressID, Street, City, Zip)
 	VALUES 	('JA73J3','123 Main St','New York','10001'),
 			('ER59D1','404 S Blvd','Chicago','60290'),
-			('MH18I7','1270 Home Ln','New York','10001');
+			('MH18I7','1270 Home Ln','New York','10001'),
+			('DN14D7','261 6th St.','New York','10002'),
+			('ZM55R6','100 Hollywood Blvd','Los Angeles','33019'),
+			('AS71D8','4521 Guadalupe Dr.','Austin','73301');
 
 -- Location --
 INSERT INTO Location(LocID, MHID, StateID, AddressID, TeamID)
 	VALUES 	('ZD23H5','EL67O1','NY','JA73J3','HL24X0'),
 			('TW14M1','RK50N5','NY','JA73J3','HL24X0'),
 			('BS18E3','QB75Q3','NY','JA73J3','KP42C5'),
-			('YZ20J0','HK72U4','NY','MH18I7','OS85X5');
+			('YZ20J0','HK72U4','NY','MH18I7','OS85X5'),
+			('KQ76M2','YZ94L4','NY','DN14D7','YQ89Q0'),
+			('KT48N2','YW46P5','LA','ZM55R6','SM22Z6'),
+			('KA67G7','IZ27J0','NY','MH18I7','OS85X5'),
+			('RB95L5','ZP84Q6','NY','JA73J3','FS38V4');
 			
 -- Event Names --
 INSERT INTO EventNames(EventID, EventName)
