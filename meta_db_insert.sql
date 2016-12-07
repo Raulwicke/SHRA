@@ -4,16 +4,16 @@ INSERT INTO METAHUMANS( MHID, alias, fName, lName)
 			('RK50N5', 'Iron Man', 'Anthony', 'Stark'),
 			('QB75Q3', 'Hulk, The', 'Bruce', 'Banner'),
 			('HK72U4', 'Thing, The', 'Benjamin', 'Grimm'),
-			('YZ94L4','Patriot','Eli','Bradley'),
-			('YW46P5','Sister Grimm','Nico','Minoru'),
-			('IZ27J0','Mister Fantastic','Reed','Richards'),
-			('ZP84Q6','Nova','Richard','Rider'),
-			('UC99L9','Beast','Hank','McCoy'),
-			('UR31O5','Giant Man','Hank','Pym'),
-			('LL12G7','Ant-Man','Scott','Lang'),
-			('OV70X3','Ant-Man','Hank','Pym'),
-			('YC26T9','Yellowjacket','Hank','Pym');
-
+			('YZ94L4', 'Patriot','Eli','Bradley'),
+			('YW46P5', 'Sister Grimm','Nico','Minoru'),
+			('IZ27J0', 'Mister Fantastic','Reed','Richards'),
+			('ZP84Q6', 'Nova','Richard','Rider'),
+			('UC99L9', 'Beast','Hank','McCoy'),
+			('UR31O5', 'Giant Man','Hank','Pym'),
+			('LL12G7', 'Ant-Man','Scott','Lang'),
+			('OV70X3', 'Ant-Man','Hank','Pym'),
+			('YC26T9', 'Yellowjacket','Hank','Pym'),
+            ('KA67G7', 'Bullseye', 'Lester', 'UNKOWN');
 
 -- Types --
 INSERT INTO TYPES (TypeID, TypeClass)
@@ -25,9 +25,9 @@ INSERT INTO TYPES (TypeID, TypeClass)
 			('LZ82A5','Animal-like Physiology'),
 			('KZ39E8','Size Manipulation'),
 			('WI20T1','Nova Force'),
-			('OV17Z8','Elasticity');
+			('OV17Z8','Elasticity'),
+            ('RB95L5','Master Marksman');
 
-			
 -- Orgins --
 INSERT INTO ORGINS (OrginID,OrginClass)
 	VALUES 	('MX73W1','Super Soldier Serum'),
@@ -37,9 +37,9 @@ INSERT INTO ORGINS (OrginID,OrginClass)
 			('WP23U0','Legacy'),
 			('YJ49O4','Pym Particles'),
 			('TX25O9','Human Mutate'),
-			('LF44D2','Intergalatic Police Force');
+			('LF44D2','Intergalatic Police Force'),
+            ('GW25U6','Intense Physical Training');
 
-			
 -- Levels --
 INSERT INTO LEVELS (PLID, PowerClass)
 	VALUES 	('TW31J8','Omega'),
@@ -48,7 +48,6 @@ INSERT INTO LEVELS (PLID, PowerClass)
 			('AM41K2','Delta'),
 			('FF37F0','Gamma');
 
-			
 -- Abilities --
 INSERT INTO ABILITIES(AbilityID, MHID, OrginID, TypeID, PLID)
 	VALUES 	('CM77S8','EL67O1','MX73W1','AL73X7','VV51H8'),
@@ -63,9 +62,9 @@ INSERT INTO ABILITIES(AbilityID, MHID, OrginID, TypeID, PLID)
 			('AC25X3','UR31O5','YJ49O4','KZ39E8','BZ54I1'),
 			('BV49B4','LL12G7','YJ49O4','KZ39E8','BZ54I1'),
 			('QQ61J7','OV70X3','YJ49O4','KZ39E8','BZ54I1'),
-			('KT81P4','YC26T9','YJ49O4','KZ39E8','BZ54I1');
+			('KT81P4','YC26T9','YJ49O4','KZ39E8','BZ54I1'),
+            ('XH11A4','KA67G7','GW25U6','RB95L5','FF37F0');
 			
-	
 -- States --
 INSERT INTO States(StateID,StateName)
 	VALUES 	('AL', 'Alabama'),
@@ -130,10 +129,10 @@ INSERT INTO Teams(TeamID,TeamName)
 			('JY58F0','West Coast Avengers'),
 			('YQ89Q0','Young Avengers'),
 			('FS38V4','Nova Corps'),
-			('SM22Z6', 'Runaways'),
-			('SS38K0','S.H.I.E.L.D.');
+			('SM22Z6','Runaways'),
+			('SS38K0','S.H.I.E.L.D.'),
+            ('HX79R3','Thunderbolts');
 
-			
 -- Address --
 INSERT INTO Addresses(AddressID, Street, City, Zip)
 	VALUES 	('JA73J3','123 Main St','New York','10001'),
@@ -143,7 +142,6 @@ INSERT INTO Addresses(AddressID, Street, City, Zip)
 			('ZM55R6','100 Hollywood Blvd','Los Angeles','33019'),
 			('AS71D8','4521 Guadalupe Dr.','Austin','73301');
 
-			
 -- Location --
 INSERT INTO Location(LocID, MHID, StateID, AddressID, TeamID)
 	VALUES 	('ZD23H5','EL67O1','NY','JA73J3','HL24X0'),
@@ -151,10 +149,10 @@ INSERT INTO Location(LocID, MHID, StateID, AddressID, TeamID)
 			('BS18E3','QB75Q3','NY','JA73J3','KP42C5'),
 			('YZ20J0','HK72U4','NY','MH18I7','OS85X5'),
 			('KQ76M2','YZ94L4','NY','DN14D7','YQ89Q0'),
-			('KT48N2','YW46P5','LA','ZM55R6','SM22Z6'),
+			('KT48N2','YW46P5','CA','ZM55R6','SM22Z6'),
 			('KA67G7','IZ27J0','NY','MH18I7','OS85X5'),
-			('RB95L5','ZP84Q6','NY','JA73J3','FS38V4');
-			
+			('RB95L5','ZP84Q6','NY','JA73J3','FS38V4'),
+            ('JC51P7','KA67G7','CA',  NULL,  'HX79R3');
 			
 -- Event Names --
 INSERT INTO EventNames(EventID, EventName)
@@ -162,7 +160,6 @@ INSERT INTO EventNames(EventID, EventName)
 			('NS30H6','House of M'),
 			('IE98H4','World War Hulk');
 
-			
 -- Events --
 INSERT INTO Events(EventID, MHID)
 	VALUES	('AF85F1','EL67O1'),
@@ -170,3 +167,30 @@ INSERT INTO Events(EventID, MHID)
 			('AF85F1','HK72U4'),
 			('IE98H4','QB75Q3');
 
+-- Registration -- 
+INSERT INTO Registration(RegId,MHID)
+    VALUES  ('DN14D7','RK50N5'),
+            ('KT48N2','IZ27J0'),
+            ('SM22Z6','UR31O5');
+
+-- Activity -- 
+INSERT INTO activity(MHID,activestat)
+    VALUES  ('EL67O1','Active'),
+            ('RK50N5','Active'),
+            ('QB75Q3','Missing'),
+            ('HK72U4','Active'),
+            ('YZ94L4','Deceased'),
+            ('YW46P5','Deceased'),
+            ('IZ27J0','Inactive'),
+            ('ZP84Q6','Deceased'),
+            ('UC99L9','Active'),
+            ('UR31O5','Inactive'),
+            ('LL12G7','Deceased'),
+            ('KA67G7','Active');
+
+-- Criminal --
+Insert INTO convicted (PrisonerID, MHID)
+    VALUES  ('JZ97G4','KA67G7');
+            
+            
+            

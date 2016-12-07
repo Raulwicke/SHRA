@@ -1,4 +1,6 @@
+
 DROP TABLE IF EXISTS abilities;
+DROP TYPE  IF EXISTS actstat;
 DROP TABLE IF EXISTS levels;
 DROP TABLE IF EXISTS orgins;
 DROP TABLE IF EXISTS types;
@@ -10,10 +12,11 @@ DROP TABLE IF EXISTS addresses;
 DROP TABLE IF EXISTS events;
 DROP TABLE IF EXISTS eventNames;
 DROP TABLE IF EXISTS teams;
+DROP TABLE IF EXISTS convicted;
 DROP TABLE IF EXISTS metahumans;
 
 
-
+CREATE TYPE actstat AS ENUM('Inactive', 'Active', 'Retired', 'Deceased', 'Missing');
 -- metahumans --
 CREATE TABLE metahumans(
 	MHID 	TEXT,
@@ -60,10 +63,9 @@ CREATE TABLE ABILITIES(
 -- Activity --
 -- What the level of Activeness a Meta is {Inactive, Active, Retired, Deceased, Missing} --
 CREATE TABLE activity(
-	StatID 		TEXT,
-	ActiveStat 	TEXT NOT NULL,
 	MHID 		TEXT REFERENCES metahumans(MHID),
-	PRIMARY KEY (StatID)
+    ActiveStat 	TEXT,
+	PRIMARY KEY (MHID)
 );
 
 -- registration --
@@ -106,7 +108,7 @@ CREATE TABLE location(
 	LocID TEXT,
 	MHID TEXT REFERENCES metahumans(MHID) NOT NULL,
 	StateID TEXT REFERENCES STATES(StateID) NOT NULL,
-	AddressID TEXT REFERENCES ADDRESSES(AddressID) NOT NULL,
+	AddressID TEXT REFERENCES ADDRESSES(AddressID),
 	TeamID TEXT REFERENCES TEAMS(TeamID),
 	PRIMARY KEY (LocID)
 );
@@ -126,6 +128,8 @@ CREATE TABLE events(
 	MHID 	TEXT references metahumans(MHID)
 );
 
-CREATE TABLE status(
-	
+CREATE TABLE convicted(
+    PrisonerID TEXT,
+    MHID TEXT references metahumans(MHID),
+    PRIMARY KEY (PrisonerID)
 );
