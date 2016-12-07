@@ -125,3 +125,7 @@ CREATE TABLE events(
 	EventId TEXT references EventNames(EventId),
 	MHID 	TEXT references metahumans(MHID)
 );
+
+CREATE TABLE status(
+	
+);

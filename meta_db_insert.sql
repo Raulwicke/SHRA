@@ -13,6 +13,8 @@ INSERT INTO METAHUMANS( MHID, alias, fName, lName)
 			('LL12G7','Ant-Man','Scott','Lang'),
 			('OV70X3','Ant-Man','Hank','Pym'),
 			('YC26T9','Yellowjacket','Hank','Pym');
+
+
 -- Types --
 INSERT INTO TYPES (TypeID, TypeClass)
 	VALUES 	('AL73X7','Peak Physical Condition'),
@@ -25,6 +27,7 @@ INSERT INTO TYPES (TypeID, TypeClass)
 			('WI20T1','Nova Force'),
 			('OV17Z8','Elasticity');
 
+			
 -- Orgins --
 INSERT INTO ORGINS (OrginID,OrginClass)
 	VALUES 	('MX73W1','Super Soldier Serum'),
@@ -36,6 +39,7 @@ INSERT INTO ORGINS (OrginID,OrginClass)
 			('TX25O9','Human Mutate'),
 			('LF44D2','Intergalatic Police Force');
 
+			
 -- Levels --
 INSERT INTO LEVELS (PLID, PowerClass)
 	VALUES 	('TW31J8','Omega'),
@@ -44,6 +48,7 @@ INSERT INTO LEVELS (PLID, PowerClass)
 			('AM41K2','Delta'),
 			('FF37F0','Gamma');
 
+			
 -- Abilities --
 INSERT INTO ABILITIES(AbilityID, MHID, OrginID, TypeID, PLID)
 	VALUES 	('CM77S8','EL67O1','MX73W1','AL73X7','VV51H8'),
@@ -59,7 +64,6 @@ INSERT INTO ABILITIES(AbilityID, MHID, OrginID, TypeID, PLID)
 			('BV49B4','LL12G7','YJ49O4','KZ39E8','BZ54I1'),
 			('QQ61J7','OV70X3','YJ49O4','KZ39E8','BZ54I1'),
 			('KT81P4','YC26T9','YJ49O4','KZ39E8','BZ54I1');
-			
 			
 	
 -- States --
@@ -129,6 +133,7 @@ INSERT INTO Teams(TeamID,TeamName)
 			('SM22Z6', 'Runaways'),
 			('SS38K0','S.H.I.E.L.D.');
 
+			
 -- Address --
 INSERT INTO Addresses(AddressID, Street, City, Zip)
 	VALUES 	('JA73J3','123 Main St','New York','10001'),
@@ -138,6 +143,7 @@ INSERT INTO Addresses(AddressID, Street, City, Zip)
 			('ZM55R6','100 Hollywood Blvd','Los Angeles','33019'),
 			('AS71D8','4521 Guadalupe Dr.','Austin','73301');
 
+			
 -- Location --
 INSERT INTO Location(LocID, MHID, StateID, AddressID, TeamID)
 	VALUES 	('ZD23H5','EL67O1','NY','JA73J3','HL24X0'),
@@ -149,12 +155,14 @@ INSERT INTO Location(LocID, MHID, StateID, AddressID, TeamID)
 			('KA67G7','IZ27J0','NY','MH18I7','OS85X5'),
 			('RB95L5','ZP84Q6','NY','JA73J3','FS38V4');
 			
+			
 -- Event Names --
 INSERT INTO EventNames(EventID, EventName)
 	VALUES	('AF85F1','Civil War'),
 			('NS30H6','House of M'),
 			('IE98H4','World War Hulk');
 
+			
 -- Events --
 INSERT INTO Events(EventID, MHID)
 	VALUES	('AF85F1','EL67O1'),
