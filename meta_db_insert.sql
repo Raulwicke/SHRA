@@ -28,8 +28,8 @@ INSERT INTO TYPES (TypeID, TypeClass)
 			('OV17Z8','Elasticity'),
             ('RB95L5','Master Marksman');
 
--- Orgins --
-INSERT INTO ORGINS (OrginID,OrginClass)
+-- origins --
+INSERT INTO origins (originID,originClass)
 	VALUES 	('MX73W1','Super Soldier Serum'),
 			('RP41W1','Technological Innovation'),
 			('SS67W3','Radiation Accident'),
@@ -49,7 +49,7 @@ INSERT INTO LEVELS (PLID, PowerClass)
 			('FF37F0','Gamma');
 
 -- Abilities --
-INSERT INTO ABILITIES(AbilityID, MHID, OrginID, TypeID, PLID)
+INSERT INTO ABILITIES(AbilityID, MHID, originID, TypeID, PLID)
 	VALUES 	('CM77S8','EL67O1','MX73W1','AL73X7','VV51H8'),
 			('HP82T9','RK50N5','RP41W1','ZD72B3','VV51H8'),
 			('EN58A5','QB75Q3','SS67W3','BA16S4','VV51H8'),
@@ -171,7 +171,8 @@ INSERT INTO Events(EventID, MHID)
 INSERT INTO Registration(RegId,MHID)
     VALUES  ('DN14D7','RK50N5'),
             ('KT48N2','IZ27J0'),
-            ('SM22Z6','UR31O5');
+            ('SM22Z6','UR31O5'),
+			('NE89G7','KA67G7');
 
 -- Activity -- 
 INSERT INTO activity(MHID,activestat)
@@ -191,6 +192,3 @@ INSERT INTO activity(MHID,activestat)
 -- Criminal --
 Insert INTO convicted (PrisonerID, MHID)
     VALUES  ('JZ97G4','KA67G7');
-            
-            
-            

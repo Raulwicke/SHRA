@@ -1,8 +1,12 @@
-
+DROP VIEW  IF EXISTS AccessMetaData;
+DROP VIEW  IF EXISTS ConvictCatalog;
+DROP VIEW  IF EXISTS PowerInventory;
+DROP FUNCTION IF EXISTS locateMetaorigin();
+DROP FUNCTION IF EXISTS locateMetaAbility();
 DROP TABLE IF EXISTS abilities;
 DROP TYPE  IF EXISTS actstat;
 DROP TABLE IF EXISTS levels;
-DROP TABLE IF EXISTS orgins;
+DROP TABLE IF EXISTS origins;
 DROP TABLE IF EXISTS types;
 DROP TABLE IF EXISTS registration;
 DROP TABLE IF EXISTS activity;
@@ -34,12 +38,12 @@ CREATE TABLE TYPES(
 	PRIMARY KEY (TypeID)
 );
 
--- Ability orgins --
--- Orgin of Ability {Tech, Mutant, Inhuman, Bio-Advancement}
-CREATE TABLE ORGINS(
-	OrginID TEXT,
-	OrginClass TEXT NOT NULL,
-	PRIMARY KEY (OrginID)
+-- Ability origins --
+-- origin of Ability {Tech, Mutant, Inhuman, Bio-Advancement}
+CREATE TABLE origins(
+	originID TEXT,
+	originClass TEXT NOT NULL,
+	PRIMARY KEY (originID)
 );
 
 -- Power Class --
@@ -54,7 +58,7 @@ CREATE TABLE levels(
 CREATE TABLE ABILITIES(
 	AbilityID 	TEXT,
 	MHID 		TEXT REFERENCES metahumans(MHID),
-	OrginID		TEXT REFERENCES orgins(OrginID),
+	originID		TEXT REFERENCES origins(originID),
 	TypeID		TEXT REFERENCES types(TypeID),
 	PLID		TEXT REFERENCES levels (PLID),
 	PRIMARY KEY (AbilityID)
@@ -64,7 +68,7 @@ CREATE TABLE ABILITIES(
 -- What the level of Activeness a Meta is {Inactive, Active, Retired, Deceased, Missing} --
 CREATE TABLE activity(
 	MHID 		TEXT REFERENCES metahumans(MHID),
-    ActiveStat 	TEXT,
+    ActiveStat 	actstat,
 	PRIMARY KEY (MHID)
 );
 
