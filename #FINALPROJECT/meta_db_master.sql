@@ -1,9 +1,11 @@
 DROP VIEW  IF EXISTS AccessMetaData;
 DROP VIEW  IF EXISTS ConvictCatalog;
+DROP VIEW  IF EXISTS PowerInventory;
+DROP FUNCTION IF EXISTS locateMetaorigin(text);
+DROP FUNCTION IF EXISTS locateMetaAbility(text);
 DROP TABLE IF EXISTS abilities;
-DROP TYPE  IF EXISTS actstat;
 DROP TABLE IF EXISTS levels;
-DROP TABLE IF EXISTS orgins;
+DROP TABLE IF EXISTS origins;
 DROP TABLE IF EXISTS types;
 DROP TABLE IF EXISTS registration;
 DROP TABLE IF EXISTS activity;
@@ -15,7 +17,7 @@ DROP TABLE IF EXISTS eventNames;
 DROP TABLE IF EXISTS teams;
 DROP TABLE IF EXISTS convicted;
 DROP TABLE IF EXISTS metahumans;
-
+DROP TYPE  IF EXISTS actstat;
 
 CREATE TYPE actstat AS ENUM('Inactive', 'Active', 'Retired', 'Deceased', 'Missing');
 -- metahumans --
@@ -35,12 +37,12 @@ CREATE TABLE TYPES(
 	PRIMARY KEY (TypeID)
 );
 
--- Ability orgins --
--- Orgin of Ability {Tech, Mutant, Inhuman, Bio-Advancement}
-CREATE TABLE ORGINS(
-	OrginID TEXT,
-	OrginClass TEXT NOT NULL,
-	PRIMARY KEY (OrginID)
+-- Ability origins --
+-- origin of Ability {Tech, Mutant, Inhuman, Bio-Advancement}
+CREATE TABLE origins(
+	originID TEXT,
+	originClass TEXT NOT NULL,
+	PRIMARY KEY (originID)
 );
 
 -- Power Class --
@@ -55,7 +57,7 @@ CREATE TABLE levels(
 CREATE TABLE ABILITIES(
 	AbilityID 	TEXT,
 	MHID 		TEXT REFERENCES metahumans(MHID),
-	OrginID		TEXT REFERENCES orgins(OrginID),
+	originID		TEXT REFERENCES origins(originID),
 	TypeID		TEXT REFERENCES types(TypeID),
 	PLID		TEXT REFERENCES levels (PLID),
 	PRIMARY KEY (AbilityID)
@@ -165,8 +167,8 @@ INSERT INTO TYPES (TypeID, TypeClass)
 			('OV17Z8','Elasticity'),
             ('RB95L5','Master Marksman');
 
--- Orgins --
-INSERT INTO ORGINS (OrginID,OrginClass)
+-- origins --
+INSERT INTO origins (originID,originClass)
 	VALUES 	('MX73W1','Super Soldier Serum'),
 			('RP41W1','Technological Innovation'),
 			('SS67W3','Radiation Accident'),
@@ -186,7 +188,7 @@ INSERT INTO LEVELS (PLID, PowerClass)
 			('FF37F0','Gamma');
 
 -- Abilities --
-INSERT INTO ABILITIES(AbilityID, MHID, OrginID, TypeID, PLID)
+INSERT INTO ABILITIES(AbilityID, MHID, originID, TypeID, PLID)
 	VALUES 	('CM77S8','EL67O1','MX73W1','AL73X7','VV51H8'),
 			('HP82T9','RK50N5','RP41W1','ZD72B3','VV51H8'),
 			('EN58A5','QB75Q3','SS67W3','BA16S4','VV51H8'),
@@ -308,7 +310,8 @@ INSERT INTO Events(EventID, MHID)
 INSERT INTO Registration(RegId,MHID)
     VALUES  ('DN14D7','RK50N5'),
             ('KT48N2','IZ27J0'),
-            ('SM22Z6','UR31O5');
+            ('SM22Z6','UR31O5'),
+			('NE89G7','KA67G7');
 
 -- Activity -- 
 INSERT INTO activity(MHID,activestat)
@@ -328,3 +331,69 @@ INSERT INTO activity(MHID,activestat)
 -- Criminal --
 Insert INTO convicted (PrisonerID, MHID)
     VALUES  ('JZ97G4','KA67G7');
+	
+-- View to find Basic information about a meta such as First Name, Last Name, Alias, Power, Power Level, and origin.
+-- Sorted by MHID
+Create view AccessMetaData As
+Select m.mhid, m.alias, m.fname, m.lname, t.typeclass, o.originclass, l.powerclass
+From metahumans m 
+	inner join abilities a on m.MHID = a.MHID
+	inner join types t on a.typeId = t.typeId
+    inner join origins o on a.originId = o.originId
+    inner join levels l on a.plid = l.plid
+order by MHID asc;
+
+-- A view to find Metas with a Criminal Record currently active and working in the Fifty State Initiative
+-- Sorted by MHID
+Create view ConvictCatalog AS
+Select m.mhid,m.alias
+From metahumans m 
+	inner join registration r on m.MHID = r.MHID
+	inner join convicted cr on m.MHID = cr.MHID
+	inner join location l on m.MHID = l.MHID
+	inner join teams t on l.teamid = t.teamid
+order by MHID asc;
+
+-- Catalog the numbered of various powered indivduals that are currently active
+Create view PowerInventory AS
+Select Count(t.typeID), t.typeclass, o.originclass
+From abilities a
+    inner join types t on a.typeId = t.typeId
+    inner join origins o on a.originId = o.originId
+	inner join activity ac on a.MHID = ac.MHID
+WHERE ac.activestat = 'Active'
+Group by t.typeclass, o.originclass;
+
+-- Function that allows the searching for Metas with specific origins, can be converted to search for metas with specific powers --
+-- Useful for locating Mutants, Aliens, Bio-engineered metas, and any other meta that has 'abilities' not derived from tech or skill --
+CREATE OR REPLACE FUNCTION locateMetaorigin (ans text) 
+Returns Table ("Alias" text, "State" text, "Ability" text) AS $$ 
+BEGIN
+Return QUERY
+Select m.alias , st.stateName, t.typeclass
+From metahumans m 
+	inner join abilities a on m.MHID = a.MHID
+	inner join types t on a.typeId = t.typeId
+    inner join origins o on a.originId = o.originId
+    inner join location l on m.MHID = l.MHID
+    inner join states st on l.StateID = st.stateID
+Where o.originclass = ans;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Function that allows the searching for Metas with specific powers, can be converted to search for metas with specific origins --
+-- Useful for locating metas with specific abilities such as Flight, Laser Vision, Enhanced Strength, etc. --
+CREATE OR REPLACE FUNCTION locateMetaAbility (ans text) 
+Returns Table ("Alias" text, "State" text, "origin" text) AS $$ 
+BEGIN
+Return QUERY
+Select m.alias , st.stateName, o.originclass
+From metahumans m 
+	inner join abilities a on m.MHID = a.MHID
+	inner join types t on a.typeId = t.typeId
+    inner join origins o on a.originId = o.originId
+    inner join location l on m.MHID = l.MHID
+    inner join states st on l.StateID = st.stateID
+Where t.typeclass = ans;
+END;
+$$ LANGUAGE plpgsql;
