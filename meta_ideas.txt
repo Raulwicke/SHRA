@@ -1,0 +1,8 @@
+-Compare power level types to orgins (count)
+
+
+-Look at involvement in Various events
+
+-Calculate Teams that need to be filled
+	-Recommend Metas to fill those ranks
+

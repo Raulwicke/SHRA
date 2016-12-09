@@ -1,10 +1,9 @@
 DROP VIEW  IF EXISTS AccessMetaData;
 DROP VIEW  IF EXISTS ConvictCatalog;
 DROP VIEW  IF EXISTS PowerInventory;
-DROP FUNCTION IF EXISTS locateMetaorigin();
-DROP FUNCTION IF EXISTS locateMetaAbility();
+DROP FUNCTION IF EXISTS locateMetaorigin(text);
+DROP FUNCTION IF EXISTS locateMetaAbility(text);
 DROP TABLE IF EXISTS abilities;
-DROP TYPE  IF EXISTS actstat;
 DROP TABLE IF EXISTS levels;
 DROP TABLE IF EXISTS origins;
 DROP TABLE IF EXISTS types;
@@ -18,6 +17,7 @@ DROP TABLE IF EXISTS eventNames;
 DROP TABLE IF EXISTS teams;
 DROP TABLE IF EXISTS convicted;
 DROP TABLE IF EXISTS metahumans;
+DROP TYPE  IF EXISTS actstat;
 
 
 CREATE TYPE actstat AS ENUM('Inactive', 'Active', 'Retired', 'Deceased', 'Missing');
